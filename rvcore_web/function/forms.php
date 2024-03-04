@@ -43,16 +43,12 @@ if (isset($_POST['change_password'])) {
         $row = mysqli_fetch_assoc($result);
 		date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d h:i:s', time());
-        $updateData = array(
-        	'password'   => $newpassword,	
-        	'change_password' => 1,
-        	'last_password_change '=> $date
-	    );
-	    $condition = array(
-	        'id'      => $id
-	    );
-	    $result = rowUpdate('employees', $updateData, $condition);
-	    if($result===true) {
+
+		 $sql = "UPDATE employees SET `password` ='".$newpassword."', `change_password` = 1, 
+		 `last_password_change` = '".$date ."' WHERE id=$id";
+			;
+
+	    if($conn->query($sql)) {
 	        $errors[] = '<div class="alert alert-success alert-dismissable">
 								  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 								  <strong>Success!</strong> Password changed successfully.

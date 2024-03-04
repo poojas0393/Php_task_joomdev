@@ -61,7 +61,9 @@ if (isset($_GET['success']) && empty($_GET['success']) ) {
 																		<td><?php echo $deals['description']; ?></td> 
 																		<td><?php  
 																		$emp = get_docdata($deals['emp_id']);
-																		echo $emp['emp_fname'].' '.$emp['emp_lname']; ?></td>
+																		if (isset($emp)) {
+																			echo $emp['emp_fname'].' '.$emp['emp_lname'];
+																		} ?></td>
 																		<td><?php echo $deals['created_at']; ?></td>
 																	</tr> 
 													<?php $i++; } ?>
