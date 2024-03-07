@@ -118,7 +118,7 @@ if(isset($_POST['add_emp'])){
 			if($result == true){
 				$errors[] = '<div class="alert alert-success alert-dismissable">
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-						  <strong>Success!</strong> Doctor Added successfully.
+						  <strong>Success!</strong> User Added successfully.
 						</div><meta http-equiv="refresh" content="2;url=./add-doctor" />';
 			}else{
 				$errors[] = '<div class="alert alert-danger alert-dismissable">

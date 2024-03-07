@@ -32,11 +32,10 @@ if (isset($_POST['add_task'])) {
 
 }
 if (isset($_POST['change_password'])) {
-
 	$old_password 	= $_POST['old_password'];
 	$password 		= $_POST['password'];
 	$id 			= $_POST['id'];
-	 $sql="SELECT * FROM `employees` WHERE `id` =".$id." AND `password` = '".md5($old_password)."'";
+	$sql="SELECT * FROM `employees` WHERE `id` =".$id." AND `password` = '".md5($old_password)."'";
     $result = mysqli_query($conn, $sql);
     $newpassword = md5($password);
     if (mysqli_num_rows($result) > 0) {
@@ -44,9 +43,10 @@ if (isset($_POST['change_password'])) {
 		date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d h:i:s', time());
 
-		 $sql = "UPDATE employees SET `password` ='".$newpassword."', `change_password` = 1, 
+		$sql = "UPDATE employees SET `password` ='".$newpassword."', `change_password` = 1, 
 		 `last_password_change` = '".$date ."' WHERE id=$id";
 			;
+
 
 	    if($conn->query($sql)) {
 	        $errors[] = '<div class="alert alert-success alert-dismissable">
@@ -60,6 +60,11 @@ if (isset($_POST['change_password'])) {
 	            </div>';
 		}
 
+	}else{
+			$errors[] = '<div class="alert alert-success alert-dismissable">
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+								  <strong>Error!</strong> Password is incorrect.
+								</div><meta http-equiv="refresh" content="2;url=./add-task" />';
 	}
 }
 /*-------------------------------------------- Sign in --------------------------------------------*/
